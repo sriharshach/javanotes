@@ -359,13 +359,13 @@ Rules for overriding:
 - Parent class abstract methods needs to be overridden in child class to provide implementation otherwise there is no use in having those abstract methods in parent class.
 - In overriding “synchronize”, “native”, “strictfp”, “abstract” won’t have any restriction while doing method overriding.
 - While overriding, we can’t reduce scope of access modifier(like public method in parent class can’t be changed to protected or default or private in child class), but increasing the scope is allowed.(private<default<protected<public)
-```
-Parent class: Child class
-public: public
-protected: public/protected
-default: public/protected/default
-private: can’t override
-```
+
+Parent class | Child class
+------------- | -------------
+public | public
+protected | public/protected
+default | public/protected/default
+private | can’t override
 
 - If child class method throws an checked exception, then compulsory parent class method should throw same exception or it’s parent but there are no restriction for unchecked exception.
 
