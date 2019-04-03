@@ -638,6 +638,10 @@ public final class Employee{
   
 } 
 ```
+Below points makes a class as immutable
+* The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
+* The class is final so we cannot create the subclass.
+* There is no setter methods i.e. we have no option to change the value of the instance variable.
 
 final vs immutable
 final means that you can't change the object's reference to point to another reference. Where immutable means that actual object's value can't be changed, but you can change its reference to another one.
@@ -647,9 +651,6 @@ in Java is interfaces with no field or methods or in simple word empty interface
 
 ## Strong reference vs soft vs weak vs phantom reference
 https://dzone.com/articles/java-garbage-collector-and-reference-objects
-
-
-
 
 
 ## Code Refactoring
@@ -670,9 +671,11 @@ https://dzone.com/articles/java-garbage-collector-and-reference-objects
 ## General Notes
 
 **Strong and weak typing**
+
 A strongly typed language is more likely to generate an error or refuse to compile if the argument passed to a function does not closely match the expected type. On the other hand, a very weakly typed language may produce unpredictable results or may perform implicit type conversion
 
 **Loose Coupling vs Tight Coupling**
+
 Tight coupling is when a group of classes are highly dependent on one another.
 This scenario arises when a class assumes too many responsibilities, or when one concern is spread over many classes rather than having its own class.
 Loose coupling is achieved by means of a design that promotes single-responsibility and separation of concerns.
@@ -680,17 +683,16 @@ A loosely-coupled class can be consumed and tested independently of other (concr
 Interfaces are a powerful tool to use for decoupling. Classes can communicate through interfaces rather than other concrete classes, and any class can be on the other end of that communication simply by implementing the interface.
 
 
-**Below points makes a class as immutable.**
-* The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
-* The class is final so we cannot create the subclass.
-* There is no setter methods i.e. we have no option to change the value of the instance variable.
+
 
 
 **Heavyweight vs Lightweight in java**
+
 Heavyweight components like "AWT" components must be drawn using native GUI on a specific platform or EJB which depend on application servers
 Where lightweight components like "Swing" components are drawn by java and don't rely on native GUI or spring framework are drawn from JDK and it’s jars not from application servers
 
 **Keywords/Other notes in Java**
+
 varargs : varrags allows the method to accept zero or multiple arguments. Advantage of using varargs is we don't have to provide overloaded methods so less code.
 http://www.javatpoint.com/varargs
 ```
