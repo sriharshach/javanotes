@@ -1,4 +1,4 @@
-*TOPICS*
+# TOPICS
 Introduction
 Runtime stack mechanism
 Default exception handling in java
