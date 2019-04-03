@@ -1,4 +1,7 @@
+[ Data Hiding ](#datahiding)
+[ Abstraction ](#abstraction)
 
+<a name="datahiding"></a>
 ## Data Hiding
 Outside person can’t access our internal data directly (or) our internal data should not go out directly. This OOP feature is called data hiding. After validation or authentication outside person can access our internal data. 
 Ex: 1) After providing proper username and password, we will be able to access our gmail information. 
@@ -23,7 +26,7 @@ Advantages?
 
 Note: It is highly recommended a data member(variable) as PRIVATE.
 
-
+<a name="abstraction"></a>
 ## Abstraction
 Hiding internal implementation and just highlight the set of services what we are offering.
 Ex: Through bank ATM GUI screen bank will highlighting some set of services what they are offering like “Withdrawl”, “Check Deposit” etc.. without highlighting internal implementation like which server it is information and how bank is performing authenticaton etc..
