@@ -1,50 +1,31 @@
 # TOPICS
-Introduction
-Runtime stack mechanism
-Default exception handling in java
-Exception Hierarchy
-Customized exception handling by using try catch
-Control flow in try catch
-Methods to print stack information
-try with multiple catch blocks
-finally block
-difference between final, finally, finalize
-control flow in try-catch-finally
-control flow in nested try-catch-finally
-various possible combinations of try-catch-finally
-throw keyword
-throws keyword
-Exception handling keywords summary
-Various possible compile time errors in exception handling
-Customized or user defined exceptions
-Top 10 exceptions
-1.7 version enhancements like try with resources, multi-catch block
 
 
-1. Introduction
+## Introduction
 An unexpected/unwanted event which disturbs normal flow of program, that event is called Exceptions
 Objective of Exception handling : Graceful termination of the program. For ex: When trying to fetch some information from DB, if we get SQL exception due to some reason, if we don’t handle exception then there might be a chance of that connection not being closed, to avoid such sort of problems it is always recommended to handle these exceptions and graceful terminate the program.
 
 Exception handling doesn’t mean repairing an exception. We have to provide alternative way to continue rest of the program normally is the concept of Exception handling. 
 For ex: To read data from remote file locating at london, if not available read from local file in catch block.
+```
 try{
 	//to read data from remote file
 catch (FileNotFoundException e) {
 	//read data from local file and continue rest of program
-}
+}```
 
 
-2. Runtime stack mechanism
+## Runtime stack mechanism
 For every thread JVM will create a runtime stack. Each and every method call performed by that thread will be stored in the corresponding stack. Each entry in the stack is called stack frame/activation record. After completion of every method call, the corresponding entry from the stack will be removed. After completing all method calls, the stack will come empty which will be destroyed by JVM just before terminating the thread.
 
-3. Default exception handling in java
+## Default exception handling in java
 - Inside a method if any exception occurs, then method in which it is raised is responsible to create exception object by including the information like name of exception, description of exception and location at which exception occurs(stack trace).
 - After creating exception object method handovers that object to the JVM. JVM will check whether the method contains any exception handling code or not. If the method doesn’t contain exception handling code then JVM terminates that method abnormally and removes corresponding entry from the stack.
 - Then JVM identifies caller method(of the above method) and checks whether caller method contains any handling code or not. If the caller method doesn’t contain handling code then JVM terminates that caller method also abnormally and removes corresponding entry from the stack. This process will be continued until main method and abnormally ends main method if it also doesn’t contain exception handling code. Finally JVM handovers responsibility of exception handling to default exception handler which is the part of JVM.
 - default exception handler prints the stack trace and terminates the program abnormally.
 - default exception handler looks like Exception in thread “xx” “name of exception” : Description and stack trace
 
-4. Exception Hierarchy
+## Exception Hierarchy
 Throwable - Exception, Error
 Throwable class acts as root for java exception hierarchy. It defines two child classes Exception, Error
 Most of the times exceptions are caused by program and Exceptions are recoverable.
@@ -60,8 +41,10 @@ A checked exception is said to be fully checked, if and only if all it’s child
 A checked exception is said to be partially checked, if and only if some of it’s child classes are unchecked. Ex: Exception, Throwable. Only possible partially checked exception are Exception, Throwable
 Within try/block if there is no chance of raising an exception, then we can’t write catch block for that exception. This rule is applicable for only fully checked exceptions
 
-5. Customized exception handling by using try catch
-6. Control flow in try catch
+## Customized exception handling by using try catch
+
+
+## Control flow in try catch
 try{
 	//risky code
 }
@@ -69,13 +52,13 @@ catch(Exception e) {
 	//alternative/handling code, we can try customized information.
 }
 
-7. Methods to print stack information
+## Methods to print stack information
 e.printStackTrace() - name of the exception, description and stack trace 
 e.toString() - name of the exception and description. sop(e) or sop(e.toString()) both are smae
 e.getMessage() - only description
 These methods are present in Throwable class
 
-8. try with multiple catch blocks
+## try with multiple catch blocks
 try{
 	//risky code
 }
@@ -89,7 +72,7 @@ catch(Exception e) {
 	//alternative/handling code, general customized information to catch other exception.
 }
 
-9. finally block
+## finally block
 It is not recommended to maintain cleanup code(like closing DB connection) inside try block because there is no guarantee for the execution of every statement inside try. It is not recommended to maintain cleanup code(like closing DB connection) inside catch block because if there is no exception, then flow doesn’t enter this block and that code will not executed. Hence to maintain/execute cleanup code irrespective of whether exception raised or not raised and whether handled or not handled such type of best place is “finally” block.
 finally block maintain “cleanup code” 
 Even if return statement is there in try or catch block, finally block is executed.
@@ -104,7 +87,7 @@ finally{
 }
 system.exit(0) means system shutdown, if it is used in try or catch block, then finally block will not get executed.
 
-10. difference between final, finally, finalize
+## difference between final, finally, finalize
 final is a modifier applicable for classes, methods and variables. If a class is declared as final then we can’t extend that class(no inheritance or can’t create child class for that class). If a method is declared as final, then we can’t override that method in the child class. If a variable is declared as final, then we can’t re-assign value to that variable.
 finally is a block always associated with try/catch to execute cleanup code. It will be executed always irrespective of whether exception raised or not raised and whether handled or not handled.
 finalize is a method which is always invoked by garbage collector just before destroying an object to perform cleanup activities. Once finalize method is completed immediately garbage collector destroys that object.
@@ -113,21 +96,21 @@ final - try/catch/finally block level cleanup activities
 Whereas finalize method is responsible to perform cleanup activities related to object i.e, whatever resources associated with object will be deallocated before destroying the object.
 finalize - object level cleanup activities
 
-11. control flow in try-catch-finally, control flow in nested try-catch-finally, various possible combinations of try-catch-finally
+## control flow in try-catch-finally, control flow in nested try-catch-finally, various possible combinations of try-catch-finally
 - try-catch-finally order is important
 - Whenever we are writing try, catch or finally or both would be written, otherwise we will get compile time exception.
 - Whenever we are writing catch/finally block, try block is required i.e, catch/finally without try is invalid.
 - Nesting of try-catch-finally it allowed.
 - {} is mandatory for try, catch, finally blocks.
 
-12. throw keyword
+## throw keyword
 We can create exception object and hand over the object manually to JVM for which we use throw keyword.
 ex: throw new ArithmeticException(“/ by zero”);
 - Best use of throw keyword for user defined exceptions or customised exceptions.
 - After throw keyword statement, we can’t add any statement directly else we will error saying “unreachable code”.
 - We can throw only Throwable type objects(child classes of throwable or class extending throwable or it’s child classes).
 
-13. throws keyword
+## throws keyword
 We can use throws keyword yo delegate responsibility of exception handling to caller(may be JVM or other method), then caller method is responsible to handle that exception.
 - throws required only for checked exceptions, use for unchecked exceptions will not have any impact.
 - throws required only to convince compiler to execute the program and usage of throws keyword doesn’t prevent abnormal termination of the program.
@@ -135,12 +118,12 @@ We can use throws keyword yo delegate responsibility of exception handling to ca
 - we can use throws keyword for methods and constructors but not for classes.
 - If we are using throws using a class like public m1() throws Test, then Test should of Throwable type(child classes of throwable or class extending throwable or it’s child classes).
 
-14. Top 10 exceptions
+## Top 10 exceptions
 Based on the person who is raising an exception, all exceptions are divided into two types: 
 JVM exceptions : The exceptions which are raised automatically by JVM whenever a particular event occurs are called JVM exceptions. Ex: ArithmeticExceptions, NPE, ArrayIndexOutOfBoundException, ClassCastException etc..
 Programmatic exceptions : The exceptions which are raised either by programmer or API developer to indicate that something is going wrong. Ex: NotBalanceFoundException, IllegalArgumentException, NumberFormatException, IllegalStateException, AssertionError etc..
 
-15. 1.7 version enhancements like try with resources, multi-catch block
+## 1.7 version enhancements like try with resources, multi-catch block
 It is highly recommended to write finally block to close resources which are opened as the part of try block.
 BufferReader br = null;
 try{
@@ -174,7 +157,7 @@ catch(IOException e) {
 	//catch IO exception and handling code.
 }
 
-16. Customized or user defined exceptions
+## Customized or user defined exceptions
 Ex:
 class InvalidAgeException extends Exception{
 	InvalidAgeException(String s){
@@ -183,7 +166,7 @@ class InvalidAgeException extends Exception{
 }
 
 
-17. Multi-catch block
+## Multi-catch block
 Until 1.6, even though multi different exception having handling code in catch block, for every exception type we have separate catch block which increases the length of code like below:
 try{
 	//risky code
