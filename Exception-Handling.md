@@ -1,6 +1,3 @@
-# TOPICS
-
-
 ## Introduction
 An unexpected/unwanted event which disturbs normal flow of program, that event is called Exceptions
 Objective of Exception handling : Graceful termination of the program. For ex: When trying to fetch some information from DB, if we get SQL exception due to some reason, if we don’t handle exception then there might be a chance of that connection not being closed, to avoid such sort of problems it is always recommended to handle these exceptions and graceful terminate the program.
@@ -27,14 +24,18 @@ For every thread JVM will create a runtime stack. Each and every method call per
 - default exception handler looks like Exception in thread “xx” “name of exception” : Description and stack trace
 
 ## Exception Hierarchy
-Throwable - Exception, Error
+**Throwable - Exception, Error**
 Throwable class acts as root for java exception hierarchy. It defines two child classes Exception, Error
 Most of the times exceptions are caused by program and Exceptions are recoverable.
 Error are no-recoverable from programmer point of view. Most of the times errors are not caused by program and due to lack of system resources
 
-Checked vs Unchecked
-Checked Exceptions - The exceptions which are checked by compiler for smooth execution of the program at runtime, these exceptions are called Checked Exceptions. Ex: FileNotFoundException, InterruptedException etc..
-Unchecked Exceptions - Some exceptions which are not checked during compile time(if programmer is handling or not), these exceptions are called Unchecked Exceptions. Ex: NullPointerException, ClassCastException, ArithmeticException etc..
+**Checked vs Unchecked**
+
+Checked Exceptions:
+The exceptions which are checked by compiler for smooth execution of the program at runtime, these exceptions are called Checked Exceptions. Ex: FileNotFoundException, InterruptedException etc..
+
+Unchecked Exceptions:
+Some exceptions which are not checked during compile time(if programmer is handling or not), these exceptions are called Unchecked Exceptions. Ex: NullPointerException, ClassCastException, ArithmeticException etc..
 Whether it is checked or unchecked every exception occurs at runtime only. There is no chance of occurring any exception at compile time.
 RuntimeExceptions and it’s child classes, Errors and it’s child classes are unchecked. Except these remaining are checked.
 Fully checked vs Partially checked
