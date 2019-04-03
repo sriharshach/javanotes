@@ -33,6 +33,7 @@ Error are no-recoverable from programmer point of view. Most of the times errors
 
 Checked Exceptions:
 - The exceptions which are checked by compiler for smooth execution of the program at runtime, these exceptions are called Checked Exceptions. Ex: FileNotFoundException, InterruptedException etc..
+
 Unchecked Exceptions:
 - Some exceptions which are not checked during compile time(if programmer is handling or not), these exceptions are called Unchecked Exceptions. Ex: NullPointerException, ClassCastException, ArithmeticException etc..
 
