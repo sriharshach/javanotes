@@ -12,7 +12,8 @@ try{
 	//to read data from remote file
 catch (FileNotFoundException e) {
 	//read data from local file and continue rest of program
-}```
+}
+```
 
 
 ## Runtime stack mechanism
@@ -45,12 +46,14 @@ Within try/block if there is no chance of raising an exception, then we can’t 
 
 
 ## Control flow in try catch
+```
 try{
 	//risky code
 }
 catch(Exception e) {
 	//alternative/handling code, we can try customized information.
 }
+```
 
 ## Methods to print stack information
 e.printStackTrace() - name of the exception, description and stack trace 
@@ -59,6 +62,7 @@ e.getMessage() - only description
 These methods are present in Throwable class
 
 ## try with multiple catch blocks
+```
 try{
 	//risky code
 }
@@ -71,11 +75,13 @@ catch(ArithmeticException e) {
 catch(Exception e) {
 	//alternative/handling code, general customized information to catch other exception.
 }
+```
 
 ## finally block
 It is not recommended to maintain cleanup code(like closing DB connection) inside try block because there is no guarantee for the execution of every statement inside try. It is not recommended to maintain cleanup code(like closing DB connection) inside catch block because if there is no exception, then flow doesn’t enter this block and that code will not executed. Hence to maintain/execute cleanup code irrespective of whether exception raised or not raised and whether handled or not handled such type of best place is “finally” block.
 finally block maintain “cleanup code” 
 Even if return statement is there in try or catch block, finally block is executed.
+```
 try{
 	//risky code
 }
@@ -85,6 +91,7 @@ catch(Exception e) {
 finally{
 	//cleanup code
 }
+```
 system.exit(0) means system shutdown, if it is used in try or catch block, then finally block will not get executed.
 
 ## difference between final, finally, finalize
@@ -125,6 +132,7 @@ Programmatic exceptions : The exceptions which are raised either by programmer o
 
 ## 1.7 version enhancements like try with resources, multi-catch block
 It is highly recommended to write finally block to close resources which are opened as the part of try block.
+```
 BufferReader br = null;
 try{
 	br = new BufferReader( new FileReader(“input.txt”));
@@ -137,8 +145,10 @@ finally{
 	//close br connection
 	br.close();
 }
+```
 The problem in above approach is we have define finally block to close the resources at any cost which increases complexity of programming and length of code. 
 We can use try with resources to avoid above difficulty.
+```
 try(BufferReader br = new BufferReader( new FileReader(“input.txt”))){
 	//use br based on our requirement
 	//br is closed automatically just before try block is finished.
@@ -146,9 +156,11 @@ try(BufferReader br = new BufferReader( new FileReader(“input.txt”))){
 catch(IOException e) {
 	//catch IO exception and handling code.
 }
+```
 - We can declare multi-resources but these resources should be separated with ;(semi-colon) 
 - All the resources that we are using should be AutoCloseable. For ex:, if we use BufferReader, it should implement java.lang.AutoCloseable(this contains only close() method). All IO, Database, Network related resources by default implemented AutoCloseable.
 - All references within try resources are implicitly final, we can’t change them in the middle of try block.
+```
 try(BufferReader br = new BufferReader( new FileReader(“input.txt”))){
 	br = new BufferReader( new FileReader(“output.txt”)); //Compile time error as we can’t reference
 	//br is closed automatically just before try block is finished.
@@ -156,18 +168,21 @@ try(BufferReader br = new BufferReader( new FileReader(“input.txt”))){
 catch(IOException e) {
 	//catch IO exception and handling code.
 }
+```
 
 ## Customized or user defined exceptions
 Ex:
+```
 class InvalidAgeException extends Exception{
 	InvalidAgeException(String s){
 		super(s);  
 	}
 }
-
+```
 
 ## Multi-catch block
 Until 1.6, even though multi different exception having handling code in catch block, for every exception type we have separate catch block which increases the length of code like below:
+```
 try{
 	//risky code
 }
@@ -177,30 +192,37 @@ catch(ArithmeticException e) {
 catch(IOException e) {
 	e.printStackTrace();
 }
+```
 
 From 1.7 version, we can use multi catch block, now we can have single catch block that can handle multiple different type of exception provided their handling code is the same.
+```
 try{
 	//risky code
 }
 catch(ArithmeticException | IOException e) {
 	e.printStackTrace();
 }
+```
 Note: In multi catch block, there shouldn’t be any relationship between exception types(like parent child relationship ex: ArithmeticException | Exception e is incorrect).
 
 Exception propagation
 Inside a method, if an exception is raised if we aren’t handling that exception then exception object will be propagated to caller then caller method is responsible to handle exception. This process is called exception propagation. In below ex: m1() has to handle exception as exception is propagated to m1 from m2.
+```
 m1(){
 	m2();
 }
 m2(){
 	sop(10/0);
 }
+```
 
 Rethrowing Exception
 We can use this approach to convert one exception to another exception type.
+```
 try{
 	//risky code
 }
 catch(ArithmeticException e) {
 	throw new NullPointerException();
 }
+```
