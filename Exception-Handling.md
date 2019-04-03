@@ -32,16 +32,17 @@ Error are no-recoverable from programmer point of view. Most of the times errors
 **Checked vs Unchecked**
 
 Checked Exceptions:
-The exceptions which are checked by compiler for smooth execution of the program at runtime, these exceptions are called Checked Exceptions. Ex: FileNotFoundException, InterruptedException etc..
-
+- The exceptions which are checked by compiler for smooth execution of the program at runtime, these exceptions are called Checked Exceptions. Ex: FileNotFoundException, InterruptedException etc..
 Unchecked Exceptions:
-Some exceptions which are not checked during compile time(if programmer is handling or not), these exceptions are called Unchecked Exceptions. Ex: NullPointerException, ClassCastException, ArithmeticException etc..
-Whether it is checked or unchecked every exception occurs at runtime only. There is no chance of occurring any exception at compile time.
-RuntimeExceptions and it’s child classes, Errors and it’s child classes are unchecked. Except these remaining are checked.
+- Some exceptions which are not checked during compile time(if programmer is handling or not), these exceptions are called Unchecked Exceptions. Ex: NullPointerException, ClassCastException, ArithmeticException etc..
+
+- Whether it is checked or unchecked every exception occurs at runtime only. There is no chance of occurring any exception at compile time.
+- RuntimeExceptions and it’s child classes, Errors and it’s child classes are unchecked. Except these remaining are checked.
+
 Fully checked vs Partially checked
-A checked exception is said to be fully checked, if and only if all it’s child classes(along with itself) also checked. Ex: IOException, InterruptedException
-A checked exception is said to be partially checked, if and only if some of it’s child classes are unchecked. Ex: Exception, Throwable. Only possible partially checked exception are Exception, Throwable
-Within try/block if there is no chance of raising an exception, then we can’t write catch block for that exception. This rule is applicable for only fully checked exceptions
+- A checked exception is said to be fully checked, if and only if all it’s child classes(along with itself) also checked. Ex: IOException, InterruptedException
+- A checked exception is said to be partially checked, if and only if some of it’s child classes are unchecked. Ex: Exception, Throwable. Only possible partially checked exception are Exception, Throwable
+- Within try/block if there is no chance of raising an exception, then we can’t write catch block for that exception. This rule is applicable for only fully checked exceptions
 
 ## Customized exception handling by using try catch
 
