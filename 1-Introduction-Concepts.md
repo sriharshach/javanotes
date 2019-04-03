@@ -1,11 +1,12 @@
 
-1) Data Hiding
+## Data Hiding
 Outside person can’t access our internal data directly (or) our internal data should not go out directly. This OOP feature is called data hiding. After validation or authentication outside person can access our internal data. 
 Ex: 1) After providing proper username and password, we will be able to access our gmail information. 
 2) Even though we are valid customer of a bank we will be able to access our account information and can’t access others account information.
 
 How can we achieve data hiding programmatically?
 By declaring data member(variable) as private we can achieve data hiding.
+```
 public class Account{
 	private double balance;
 	…..
@@ -15,15 +16,15 @@ public class Account{
 		return balance;
 	}
 }
+```
 
 Advantages?
 - Achieve security(outside person doesn’t know how it is implemented)
 
 Note: It is highly recommended a data member(variable) as PRIVATE.
 
-—————————————————————————————————————
 
-2) Abstraction
+## Abstraction
 Hiding internal implementation and just highlight the set of services what we are offering.
 Ex: Through bank ATM GUI screen bank will highlighting some set of services what they are offering like “Withdrawl”, “Check Deposit” etc.. without highlighting internal implementation like which server it is information and how bank is performing authenticaton etc..
 
@@ -34,9 +35,8 @@ Advantages?
 
 By using interfaces(full abstraction) and abstract(partial abstraction) classes we can implement abstraction.
 
-—————————————————————————————————————
 
-3) Encapsulation
+## Encapsulation
 The process of binding data members and methods into a single unit is known as encapsulation.
 Ex: class Student {
 	//data members
@@ -51,19 +51,18 @@ Advantages?
 Disadvantages?
 - Increases length of code and slows down execution.
 
-—————————————————————————————————————
 
-4) Tightly encapsulated classes
+## Tightly encapsulated classes
 If each and every variable in a class is declared as private, then we call that class as tightly encapsulated class. We need not check if this class contains corresponding getter and setter methods are not and whether these methods are declared as public or not.
 
-—————————————————————————————————————
 
-5) IS-A relationship(Inheritance)
+## IS-A relationship(Inheritance)
 Inheritance is a property in which one object acquires all the properties and behavior of parent object. “extends” is used to get make use of inheritance feature. 
 Advantage?
 - Reusability of code with which we can save time and code redundancy can be achieved.
 
 Sample Code:
+```
 class P {
 	public void test1() {
 		system.out.println(“in parent class”);
@@ -95,6 +94,7 @@ class Test {
 	//Case4
 	C c1 = new P(); //error - incompatible types found P, required C
 }
+```
 Conclusion of above code:
 - Whatever methods parent has by default available for the child, hence on the child reference we can call both parent and child class methods(Case1)
 - Whatever methods child has by default not available to the parent and hence on the parent reference we can’t call child specific methods(Case2)
@@ -126,9 +126,8 @@ class A extends B {
 class B extends A {
 }
 
-—————————————————————————————————————
 
-6) Has-A relationship
+## Has-A relationship
 i) Has-A relationship is also known as composition or aggregation. 
 Class Engine {
 	//variables + methods
@@ -148,7 +147,7 @@ Advantages?
 Inheritance is an "is-a" relationship. Composition is a "has-a”.
 
 Other Notes:
-Aggregation vs Composition
+**Aggregation vs Composition**
 1. A "owns" B = Composition(strong association) : B has no meaning or purpose in the system without A
 2. A "uses" B = Aggregation(weak association) : B exists independently (conceptually) from A
 Composition : Since Engine is-part-of Car, the relationship between them is Composition. Here is how they are implemented between Java classes.
@@ -184,23 +183,21 @@ If we want totally functionality of a class then we should use IS-A relation. Ex
 If we want part of functionality, then we should use Has-A relationship. Ex: “Maruti” Has-A “Engine”
 http://www.journaldev.com/1775/multiple-inheritance-in-java
 
-—————————————————————————————————————
 
-7) Method Signature
+## Method Signature
 In java method signature consists of method name followed by argument types. 
 Ex: public static int method(int i, float f)
 method signature : method(int, float)
 Note: Compiler will use this method signature to resolve method calls to check if int, float is passed to above example, if anything else is passed, it will throw compilation error. Method signature can never be same for two methods in java.
 
-—————————————————————————————————————
 
-8) Method overloading(compile time polymorphism or static polymorphism or early binding)
+## Method overloading(compile time polymorphism or static polymorphism or early binding)
 Same method name + different argument types(or no of arguments)
 
 Advantages?
 - Not having method overloading feature will increases complexity of programming like in C, where we need to have different methods for same functionality involving int, float whereas in java we can have same method name which makes easier for programmer to use those methods. For ex: abs(int i), fabs(float f), dabs(double d), we can see that we used three functions to call same functionality, where as in java, abs(int i), abs(float f), so for anything we can just use “abs” function.
 - In overloading method calling is taken care by compiler based on reference type.
-
+```
 Class test {
 	public void m1() {sop(“no-arg”);
 	public void m1(int i) {sop(“int-arg”);
@@ -214,14 +211,14 @@ p s v m(string [] args) {
 	t.m1(10);
 	t.m1(10.5);
 }
-
+```
 
 Case (1): 
 Automatic promotion :
 When resolving overloaded methods if exact method is not available the we do not get any compile time error immediately, the compiler first promotes the arguments to the next level and checks whether the matched method is available, if its available then compiler considers it, otherwise promotes it to next level. This process will continue until all possible promotions are completed. If no match is found we would get compiler error!
 Promotion available : byte->short->int->long->float->double
 char->int->long->float->double
-
+```
 Class test {
 	public void m1(int i) {sop(“int-arg”);
 	public void m1(float f) {sop(“float-arg”);
@@ -236,9 +233,10 @@ p s v m(string [] args) {
 	t.m1(10L); // float arg
 	t.m1(10.5); //compile time error, cannot find symbol
 }
-
+```
 Case (2): 
 While resolving overloaded methods compiler will always give precedence for child class(String, check below ex) when compared with parent type argument(Object).
+```
 Class test {
 	public void m1(String s) {sop(“string version”);
 	public void m1(Object O) {sop(“object version”);
@@ -251,8 +249,9 @@ p s v m(string [] args) {
 	t.m1(new Object()); //object version
 	t.m1(null); //string version
 }
-
+```
 Case (3):
+```
 Class test {
 	public void m1(String s) {sop(“string version”);
 	public void m1(StringBuffer sb) {sop(“stringbuffer version”);
@@ -265,8 +264,9 @@ p s v m(string [] args) {
 	t.m1(new StringBuffer(“harsha”)); //string buffer version
 	t.m1(null); //compilation error(reference to m1 is ambiguous), because both string and stringbuffer are child classes for object, hence compiler doesn’t know which one should be give more preference.
 }
-
+```
 Case (4):
+```
 Class test {
 	public void m1(int i, float f) {sop(“int-float version”);
 	public void m1(float f, int i) {sop(“float-int version”);
@@ -280,12 +280,14 @@ p s v m(string [] args) {
 	t.m1(10, 10); //compilation error(reference to m1 is ambiguous)
 	t.m1(10.5f, 10.5f); //compilation error(can’t find symbol m1(float, float))
 }
+```
 
 Case (5): 
 In general, when using method overloading varargs method get low priority as compared to normal method. i.e, if other method is matched then only varargs will execute.
 
 Case (6): 
 In overloading method resolution(which method has to executed parent or child method) is always taken care by compiler based on reference type, hence overloading is also called as compile time polymorphism or static polymorphism or early binding. Hence in overloading, runtime object won’t play any role.
+```
 class Animal{
 }
 class Monkey extends Animal{
@@ -309,11 +311,12 @@ p s v m(string [] args) {
 	Animal a1 = new Monkey(); 
 	t.m1(a1); //animal version - Since animal is referenced for a1 object, animal version is called.
 }
+```
 
-—————————————————————————————————————
 
-9) Method overriding(run time polymorphism or dynamic polymorphism or late binding)
+## Method overriding(run time polymorphism or dynamic polymorphism or late binding)
 Whatever methods parent has, by default they are available to child through inheritance, if child class is not satisfied with parent class implementation, then child is allowed to redefine that method based on its requirement, this process is called method overriding.
+```
 Ex:
 class Parent{
 	public void m(){  //overridden method
@@ -334,7 +337,7 @@ p s v m(string [] args) {
 	Parent p1 = new Child();
 	p1.m(); //child, at runtime, p1 is referenced to child, hence child method is called.
 }
-
+```
 In overriding, method resolution is always taken care by JVM based on runtime object and hence overriding is called as runtime polymorphism or dynamic polymorphism or late binding.
 
 Rules for overriding:
@@ -386,9 +389,7 @@ Overriding with varargs method: We can overwrite varargs method with another var
 Overriding concept is only for method but not for variables(instance or static).
 
 ￼
-—————————————————————————————————————
-
-10) Polymorphism
+## Polymorphism
 One name but multiple forms is known as polymorphism.
 ex: method overloading, method overriding, usage of parent reference to hold child object(like List l = new LinkedList() or List l = new ArrayList()).
 If we don’t know exact runtime type of object needs to be used, then we should use parent reference.
@@ -398,10 +399,10 @@ Polymorphism has two types :
 1. compile time polymorphism or static polymorphism or early binding. ex: method overloading, method hiding
 2. run time polymorphism or dynamic polymorphism or late binding ex: method overriding
 
-—————————————————————————————————————
 
-11) Static Control flow
+## Static Control flow
 If all the members in the class are static, then static control flow flows below rules:
+```
 Class test () {
 	static int i = 10; —> (1), (7)
 	static { —> (2)
@@ -419,6 +420,7 @@ Class test () {
 	} 
 	static int j = 20;  —> (6), (12)
 }
+```
 1. Identification of static members from top to bottom(1 to 6)
 2. Execution of static variable assignments and static blocks from top to bottom.(7 to 12)
 3. Execution of main method(13 to 15)
@@ -426,16 +428,19 @@ Static blocks are executed at the time of class loading
 RIWO = read indirectly write out : http://stackoverflow.com/questions/31779507/what-is-riwo-read-indirectly-write-out-state
 
 //Without writing main method printing messages to console and writing static block
+```
 Class test {
 	static {
 		sop(“Hello”);
 		system.exit(0);
 	}
 }
+```
 Output: Hello //it will not throw runtime exception
 
 //Without writing static block and main method printing messages to console
 Ex1:
+```
 Class test {
 	static int x = m1();
 	public static int m1() {
@@ -444,7 +449,9 @@ Class test {
 		return 10;
 	}
 }
+```
 Ex2:
+```
 Class test {
 	static test t = new test();
 	{
@@ -452,7 +459,9 @@ Class test {
 		system.exit(0);
 	}
 }
+```
 Ex3: Using constructor
+```
 Class test {
 	static test t = new test();
 	test() {
@@ -460,12 +469,9 @@ Class test {
 		system.exit(0);
 	}
 }
+```
 
-Static Control flow between pare
-
-—————————————————————————————————————
-
-11) Instance Control flow
+## Instance Control flow
 If all the members in the class are static, then static control flow flows below rules:
 1. Identification of instance members from top to bottom
 2. Execution of instance variable assignments and static blocks from top to bottom.
@@ -473,6 +479,7 @@ If all the members in the class are static, then static control flow flows below
 Whenever constructor is called, instance block of code is automatically called.
 
 If both instance and static block are present, then static blocks will get executed first.
+```
 Class test {
 	{
 		sop(“”Instance block 1”);
@@ -495,8 +502,9 @@ Class test {
 		sop(“”static block 2”);
 	}
 }
-
+```
 Output:
+```
 static block 1
 static block 2
 instance block 1
@@ -505,11 +513,9 @@ constructor
 instance block 1
 instance block 2
 constructor
+```
 
-
-—————————————————————————————————————
-
-12) Constructors
+## Constructors
 In how many ways we can get/create object in java?
 1. Using “new” operator -> Test t = new Test();
 2. Using newInstance() method —> Test t = (Test) Class.forName(“Test”).newInstance();
@@ -522,6 +528,7 @@ In how many ways we can get/create object in java?
 
 Purpose/Need of constructors:
 To initialise an object.
+```
 Class student {
 	string name;
 	int rollno;
@@ -534,6 +541,7 @@ Class student {
 		Student s = new Student(“Sriharsha”, “2”);
 	}
 }
+```
 
 - Only applicable modifiers for constructors are public, private, protected, default, if we try to use any other modifier(like static, final etc), we will get compile error.
 - Complier is responsible to generate default constructor(but not JVM). If we are not writing any constructor, then only compiler will generate default constructor. If we are writing at-least one constructor, then we compiler won’t generate default constructor.
@@ -543,9 +551,8 @@ Prototype of default constructor
 - Access modifier is exactly same as access modifier of class(public or default).
 - It contains only one line super(); inside it. It is a no-argument call to super class constructor.
 
-—————————————————————————————————————
 
-13) Coupling
+## Coupling
 Degree of dependency between component is called Coupling. Two types : Loosely coupling(if dependency is less), Tight coupling(if dependency is more).
 It is bad to have tight coupling in general because of below reasons:
 - Any change will have impact on all the dependency components, so enhancement/any change is difficult.
@@ -558,14 +565,12 @@ Loose coupling is achieved by means of a design that promotes single-responsibil
 A loosely-coupled class can be consumed and tested independently of other (concrete) classes.
 Interfaces are a powerful tool to use for decoupling. Classes can communicate through interfaces rather than other concrete classes, and any class can be on the other end of that communication simply by implementing the interface.
 
-—————————————————————————————————————
 
-14) Cohesion
+## Cohesion
 For every component a clear will defined functionality is defined, then that component is said to be highly cohesive/follow high cohesion. Low cohesion component is difficult to maintain as code is cumbersome, enhancement changes will be difficult and reusability of code is minimal. 
 
-—————————————————————————————————————
 
-15) Type-casting
+## Type-casting
 We can use parent reference to hold child object like for ex: Object O = new String(“harsha”);
 We can use interface reference to hold implemented class object. for ex: Runnable r = new Thread();
 
@@ -582,7 +587,7 @@ Runtime check for type-casting:
 	Object O = new String(“harsha”);
 	StringBuffer sb = (StringBuffer) O;
 The above example satisfies compile time check, but runtime check fail because O is of type String which has no relationship with StringBuffer. Hence, A, b, C must be either same or derived types.
-
+```
 A class(parent) —> B class(Child) —> C class(grand child)
 C c = new C();
 B b = new C(); === (B)c -> type casting c with B 
@@ -601,12 +606,11 @@ c.mi2();
 P p = (P)c;
 p.mi1();
 p.m2(); // compilation error
+```
 
-
-—————————————————————————————————————
-
-16) Immutable
+## Immutable
 There are many immutable classes like String, Boolean, Byte, Short, Integer, Long, Float, Double etc. In short, all the wrapper classes and String class is immutable. We can also create immutable class by creating final class that have final data members.
+```
 public final class Employee{  
 	final String pancardNumber;  
   
@@ -619,37 +623,22 @@ public final class Employee{
 	}  
   
 } 
+```
 
 final vs immutable
 final means that you can't change the object's reference to point to another reference. Where immutable means that actual object's value can't be changed, but you can change its reference to another one.
 
-—————————————————————————————————————
-
-17) Marker interface 
+## Marker interface 
 in Java is interfaces with no field or methods or in simple word empty interface in java is called marker interface. Example of market interface is Serializable, Clonnable and Remote interface. Marker interface in Java is used to indicate something to compiler, JVM or any other tool but Annotation is better way of doing same thing.
 
-—————————————————————————————————————
-
-18) Strong reference vs soft vs weak vs phantom reference
+## Strong reference vs soft vs weak vs phantom reference
 https://dzone.com/articles/java-garbage-collector-and-reference-objects
 
 
 
 
 
-The above class is immutable because:
-* The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
-* The class is final so we cannot create the subclass.
-* There is no setter methods i.e. we have no option to change the value of the instance variable.
-These points makes this class as immutable.
-
-
-Others
-
-
-
-
-16) Code Refactoring
+## Code Refactoring
 1. Duplicated code
 2. Long methods
 3. Complex conditional statements
@@ -663,22 +652,50 @@ Others
 11. Combinational Explosions
 12. Oddball Solutions
 
-—————————————————————————————————————
 
-General Notes
+## General Notes
 
-Strong and weak typing
+**Strong and weak typing**
 A strongly typed language is more likely to generate an error or refuse to compile if the argument passed to a function does not closely match the expected type. On the other hand, a very weakly typed language may produce unpredictable results or may perform implicit type conversion
 
-Loose Coupling vs Tight Coupling
+**Loose Coupling vs Tight Coupling**
 Tight coupling is when a group of classes are highly dependent on one another.
 This scenario arises when a class assumes too many responsibilities, or when one concern is spread over many classes rather than having its own class.
 Loose coupling is achieved by means of a design that promotes single-responsibility and separation of concerns.
 A loosely-coupled class can be consumed and tested independently of other (concrete) classes.
 Interfaces are a powerful tool to use for decoupling. Classes can communicate through interfaces rather than other concrete classes, and any class can be on the other end of that communication simply by implementing the interface.
 
-Helper Methods
 
+**Below points makes a class as immutable.**
+* The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
+* The class is final so we cannot create the subclass.
+* There is no setter methods i.e. we have no option to change the value of the instance variable.
+
+
+**Helper Methods**
+
+
+
+**Heavyweight vs Lightweight in java**
+Heavyweight components like "AWT" components must be drawn using native GUI on a specific platform or EJB which depend on application servers
+Where lightweight components like "Swing" components are drawn by java and don't rely on native GUI or spring framework are drawn from JDK and it’s jars not from application servers
+
+**Keywords/Other notes in Java**
+varargs : varrags allows the method to accept zero or multiple arguments. Advantage of using varargs is we don't have to provide overloaded methods so less code.
+http://www.javatpoint.com/varargs
+```
+class VarargsExample{  
+   
+ static void display(String... values){  
+  System.out.println("display method invoked ");  
+ }  
+  
+ public static void main(String args[]){    
+ display(); //zero argument   
+ display("my","name","is","varargs"); //four arguments  
+ }   
+}
+```
 
 Static Binding vs Dynamic Binding
 Decoupling
@@ -696,30 +713,7 @@ WebServices
 
 
 
-Heavyweight vs Lightweight in java
-Heavyweight components like "AWT" components must be drawn using native GUI on a specific platform or EJB which depend on application servers
-Where lightweight components like "Swing" components are drawn by java and don't rely on native GUI or spring framework are drawn from JDK and it’s jars not from application servers
-
-Keywords/Other notes in Java
-varargs : varrags allows the method to accept zero or multiple arguments. Advantage of using varargs is we don't have to provide overloaded methods so less code.
-http://www.javatpoint.com/varargs
-
-class VarargsExample{  
-   
- static void display(String... values){  
-  System.out.println("display method invoked ");  
- }  
-  
- public static void main(String args[]){    
- display(); //zero argument   
- display("my","name","is","varargs"); //four arguments  
- }   
-}
-
-
-
-
-Links
+Useful Links
 
 http://javarevisited.blogspot.in/2013/03/top-15-data-structures-algorithm-interview-questions-answers-java-programming.html
 http://javarevisited.blogspot.in/2011/09/spring-interview-questions-answers-j2ee.html
