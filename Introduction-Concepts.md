@@ -51,157 +51,6 @@ Advantages?
 Disadvantages?
 - Increases length of code and slows down execution.
 
-
-## Tightly encapsulated classes
-If each and every variable in a class is declared as private, then we call that class as tightly encapsulated class. We need not check if this class contains corresponding getter and setter methods are not and whether these methods are declared as public or not.
-
-
-## IS-A relationship(Inheritance)
-Inheritance is a property in which one object acquires all the properties and behavior of parent object. “extends” is used to get make use of inheritance feature. 
-Advantage?
-- Reusability of code with which we can save time and code redundancy can be achieved.
-
-Sample Code:
-```
-class P {
-	public void test1() {
-		system.out.println(“in parent class”);
-	}
-}
-
-class C extends P {
-	public void test2() {
-		system.out.println(“in child class”);
-	}
-}
-
-class Test {
-	//Case1
-	P p = new P();
-	p.test1();
-	p.test2(); //error - cannot find method test2
-	
-	//Case2
-	C c = new C();
-	c.test1();
-	c.test2(); 
-	
-	//Case3
-	P p1 = new C();
-	p1.test1();
-	p1.test2(); //error
-
-	//Case4
-	C c1 = new P(); //error - incompatible types found P, required C
-}
-```
-Conclusion of above code:
-- Whatever methods parent has by default available for the child, hence on the child reference we can call both parent and child class methods(Case1)
-- Whatever methods child has by default not available to the parent and hence on the parent reference we can’t call child specific methods(Case2)
-- Parent reference can be used to hold child object but using that reference we can’t call child specific methods(Case3), but we can call the methods present in parent class
-- Child reference can’t be used to hold parent object(Case4)
-
-Other Notes:
-i) Every class in java is a child class of Object class either directly or indirectly so that Object class methods are by default available to every java class without rewriting. 
-ii) If our class doesn’t extend any other class, then only our class is direct child class of Object class like below.
-```
-Class A {
-	//methods + variables
-}
-```
-
-iii) If our class extends any other class, then our class is indirect class of Object.
-```
-Class A extends B {
-	//variables + methods
-}
-```
-A is a child of B, B is the child of Object. This is called multi-level inheritance. 
-
-iv) Java doesn’t support multiple inheritance like class A extends B, C - will return error. To avoid ambiguity problem, hence java doesn’t support multiple inheritance.
-v) Java provides multiple inheritance by using “interface” ex: interface A extends B,C. Since interfaces have only skeleton method body(or method declaration), we will not be facing any ambiguity problem. Strictly speaking, through interface we won’t get any inheritance as we don’t get a code re-use as methods are only declarations not implemented.
-vi) Cyclic inheritance is not allowed, ofcourse it is not required as it is useless extending A to A is meaningless, in second example, extending A to B and B to A is also meaningless if you want properties of A and B to be present in both then write a single class instead of two classes.
-```
-class A extends A {
-}
-
-OR
-class A extends B {
-}
-class B extends A {
-}
-```
-
-
-## Has-A relationship
-i) Has-A relationship is also known as composition or aggregation. 
-```
-Class Engine {
-	//variables + methods
-}
-
-Class Car {
-	Engine c = new Engine();
-}
-```
-
-“Car” Has-A “Engine” reference.
-
-ii) There is no specific keyword to implement has-a relation, but most of the times, we depending on “new” keyword.
-
-Advantages?
-- Reusability of code, like using Engine methods in Car
-
-Inheritance is an "is-a" relationship. Composition is a "has-a”.
-
-Other Notes:
-**Aggregation vs Composition**
-1. A "owns" B = Composition(strong association) : B has no meaning or purpose in the system without A
-2. A "uses" B = Aggregation(weak association) : B exists independently (conceptually) from A
-Composition : Since Engine is-part-of Car, the relationship between them is Composition. Here is how they are implemented between Java classes.
-Ex:
-```
-public class Car {
-    //final will make sure engine is initialized
-    private final Engine engine;  
-       
-    public Car(){
-       engine  = new Engine();
-    }
-}
-
-class Engine {
-    private String type;
-}
-```
-
-Aggregation : Since Organization has Person as employees, the relationship between them is Aggregation. Here is how they look like in terms of Java classes
-Ex:
-```
-public class Organization {
-    private List<Person> employees;
-}
-
-public class Person {
-    private String name;   
-}
-```
-   Ex2: A Text Editor owns a Buffer (composition). A Text Editor uses a File (aggregation). When the Text Editor is closed, the Buffer is destroyed but the File itself is not destroyed.
-	 A Company is an aggregation of People. A Company is a composition of Accounts. When a Company ceases to do business its Accounts cease to exist but its People continue to exist.
-
-IS-A vs Has-A
-If we want totally functionality of a class then we should use IS-A relation. Ex: “Maruti” IS-A “Car” because all the functionalities of car are needed in Maruti.
-If we want part of functionality, then we should use Has-A relationship. Ex: “Maruti” Has-A “Engine”
-http://www.journaldev.com/1775/multiple-inheritance-in-java
-
-
-## Method Signature
-In java method signature consists of method name followed by argument types. 
-Ex: public static int method(int i, float f)
-method signature : method(int, float)
-Note: Compiler will use this method signature to resolve method calls to check if int, float is passed to above example, if anything else is passed, it will throw compilation error. Method signature can never be same for two methods in java.
-
-
 ## Method overloading(compile time polymorphism or static polymorphism or early binding)
 Same method name + different argument types(or no of arguments)
 
@@ -412,6 +261,155 @@ ex: List l = new ArrayList();
 Polymorphism has two types :
 1. compile time polymorphism or static polymorphism or early binding. ex: method overloading, method hiding
 2. run time polymorphism or dynamic polymorphism or late binding ex: method overriding
+
+## Tightly encapsulated classes
+If each and every variable in a class is declared as private, then we call that class as tightly encapsulated class. We need not check if this class contains corresponding getter and setter methods are not and whether these methods are declared as public or not.
+
+
+## IS-A relationship(Inheritance)
+Inheritance is a property in which one object acquires all the properties and behavior of parent object. “extends” is used to get make use of inheritance feature. 
+Advantage?
+- Reusability of code with which we can save time and code redundancy can be achieved.
+
+Sample Code:
+```
+class P {
+	public void test1() {
+		system.out.println(“in parent class”);
+	}
+}
+
+class C extends P {
+	public void test2() {
+		system.out.println(“in child class”);
+	}
+}
+
+class Test {
+	//Case1
+	P p = new P();
+	p.test1();
+	p.test2(); //error - cannot find method test2
+	
+	//Case2
+	C c = new C();
+	c.test1();
+	c.test2(); 
+	
+	//Case3
+	P p1 = new C();
+	p1.test1();
+	p1.test2(); //error
+
+	//Case4
+	C c1 = new P(); //error - incompatible types found P, required C
+}
+```
+Conclusion of above code:
+- Whatever methods parent has by default available for the child, hence on the child reference we can call both parent and child class methods(Case1)
+- Whatever methods child has by default not available to the parent and hence on the parent reference we can’t call child specific methods(Case2)
+- Parent reference can be used to hold child object but using that reference we can’t call child specific methods(Case3), but we can call the methods present in parent class
+- Child reference can’t be used to hold parent object(Case4)
+
+Other Notes:
+i) Every class in java is a child class of Object class either directly or indirectly so that Object class methods are by default available to every java class without rewriting. 
+ii) If our class doesn’t extend any other class, then only our class is direct child class of Object class like below.
+```
+Class A {
+	//methods + variables
+}
+```
+
+iii) If our class extends any other class, then our class is indirect class of Object.
+```
+Class A extends B {
+	//variables + methods
+}
+```
+A is a child of B, B is the child of Object. This is called multi-level inheritance. 
+
+iv) Java doesn’t support multiple inheritance like class A extends B, C - will return error. To avoid ambiguity problem, hence java doesn’t support multiple inheritance.
+v) Java provides multiple inheritance by using “interface” ex: interface A extends B,C. Since interfaces have only skeleton method body(or method declaration), we will not be facing any ambiguity problem. Strictly speaking, through interface we won’t get any inheritance as we don’t get a code re-use as methods are only declarations not implemented.
+vi) Cyclic inheritance is not allowed, ofcourse it is not required as it is useless extending A to A is meaningless, in second example, extending A to B and B to A is also meaningless if you want properties of A and B to be present in both then write a single class instead of two classes.
+```
+class A extends A {
+}
+
+OR
+class A extends B {
+}
+class B extends A {
+}
+```
+
+
+## Has-A relationship
+i) Has-A relationship is also known as composition or aggregation. 
+```
+Class Engine {
+	//variables + methods
+}
+
+Class Car {
+	Engine c = new Engine();
+}
+```
+
+“Car” Has-A “Engine” reference.
+
+ii) There is no specific keyword to implement has-a relation, but most of the times, we depending on “new” keyword.
+
+Advantages?
+- Reusability of code, like using Engine methods in Car
+
+Inheritance is an "is-a" relationship. Composition is a "has-a”.
+
+Other Notes:
+**Aggregation vs Composition**
+1. A "owns" B = Composition(strong association) : B has no meaning or purpose in the system without A
+2. A "uses" B = Aggregation(weak association) : B exists independently (conceptually) from A
+Composition : Since Engine is-part-of Car, the relationship between them is Composition. Here is how they are implemented between Java classes.
+Ex:
+```
+public class Car {
+    //final will make sure engine is initialized
+    private final Engine engine;  
+       
+    public Car(){
+       engine  = new Engine();
+    }
+}
+
+class Engine {
+    private String type;
+}
+```
+
+Aggregation : Since Organization has Person as employees, the relationship between them is Aggregation. Here is how they look like in terms of Java classes
+Ex:
+```
+public class Organization {
+    private List<Person> employees;
+}
+
+public class Person {
+    private String name;   
+}
+```
+   Ex2: A Text Editor owns a Buffer (composition). A Text Editor uses a File (aggregation). When the Text Editor is closed, the Buffer is destroyed but the File itself is not destroyed.
+	 A Company is an aggregation of People. A Company is a composition of Accounts. When a Company ceases to do business its Accounts cease to exist but its People continue to exist.
+
+IS-A vs Has-A
+If we want totally functionality of a class then we should use IS-A relation. Ex: “Maruti” IS-A “Car” because all the functionalities of car are needed in Maruti.
+If we want part of functionality, then we should use Has-A relationship. Ex: “Maruti” Has-A “Engine”
+http://www.journaldev.com/1775/multiple-inheritance-in-java
+
+
+## Method Signature
+In java method signature consists of method name followed by argument types. 
+Ex: public static int method(int i, float f)
+method signature : method(int, float)
+Note: Compiler will use this method signature to resolve method calls to check if int, float is passed to above example, if anything else is passed, it will throw compilation error. Method signature can never be same for two methods in java.
 
 
 ## Static Control flow
