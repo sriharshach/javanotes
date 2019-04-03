@@ -104,19 +104,24 @@ Conclusion of above code:
 Other Notes:
 i) Every class in java is a child class of Object class either directly or indirectly so that Object class methods are by default available to every java class without rewriting. 
 ii) If our class doesn’t extend any other class, then only our class is direct child class of Object class like below.
+```
 Class A {
 	//methods + variables
 }
+```
 
 iii) If our class extends any other class, then our class is indirect class of Object.
+```
 Class A extends B {
 	//variables + methods
 }
+```
 A is a child of B, B is the child of Object. This is called multi-level inheritance. 
 
 iv) Java doesn’t support multiple inheritance like class A extends B, C - will return error. To avoid ambiguity problem, hence java doesn’t support multiple inheritance.
 v) Java provides multiple inheritance by using “interface” ex: interface A extends B,C. Since interfaces have only skeleton method body(or method declaration), we will not be facing any ambiguity problem. Strictly speaking, through interface we won’t get any inheritance as we don’t get a code re-use as methods are only declarations not implemented.
 vi) Cyclic inheritance is not allowed, ofcourse it is not required as it is useless extending A to A is meaningless, in second example, extending A to B and B to A is also meaningless if you want properties of A and B to be present in both then write a single class instead of two classes.
+```
 class A extends A {
 }
 
@@ -125,10 +130,12 @@ class A extends B {
 }
 class B extends A {
 }
+```
 
 
 ## Has-A relationship
 i) Has-A relationship is also known as composition or aggregation. 
+```
 Class Engine {
 	//variables + methods
 }
@@ -136,6 +143,7 @@ Class Engine {
 Class Car {
 	Engine c = new Engine();
 }
+```
 
 “Car” Has-A “Engine” reference.
 
@@ -152,6 +160,7 @@ Other Notes:
 2. A "uses" B = Aggregation(weak association) : B exists independently (conceptually) from A
 Composition : Since Engine is-part-of Car, the relationship between them is Composition. Here is how they are implemented between Java classes.
 Ex:
+```
 public class Car {
     //final will make sure engine is initialized
     private final Engine engine;  
@@ -164,9 +173,11 @@ public class Car {
 class Engine {
     private String type;
 }
+```
 
 Aggregation : Since Organization has Person as employees, the relationship between them is Aggregation. Here is how they look like in terms of Java classes
 Ex:
+```
 public class Organization {
     private List<Person> employees;
 }
@@ -174,7 +185,7 @@ public class Organization {
 public class Person {
     private String name;   
 }
-
+```
    Ex2: A Text Editor owns a Buffer (composition). A Text Editor uses a File (aggregation). When the Text Editor is closed, the Buffer is destroyed but the File itself is not destroyed.
 	 A Company is an aggregation of People. A Company is a composition of Accounts. When a Company ceases to do business its Accounts cease to exist but its People continue to exist.
 
@@ -348,11 +359,13 @@ Rules for overriding:
 - Parent class abstract methods needs to be overridden in child class to provide implementation otherwise there is no use in having those abstract methods in parent class.
 - In overriding “synchronize”, “native”, “strictfp”, “abstract” won’t have any restriction while doing method overriding.
 - While overriding, we can’t reduce scope of access modifier(like public method in parent class can’t be changed to protected or default or private in child class), but increasing the scope is allowed.(private<default<protected<public)
-Parent class   |   Child class
-public		public
-protected		public/protected
-default		public/protected/default
-private		can’t override
+```
+Parent class: Child class
+public: public
+protected: public/protected
+default: public/protected/default
+private: can’t override
+```
 
 - If child class method throws an checked exception, then compulsory parent class method should throw same exception or it’s parent but there are no restriction for unchecked exception.
 
@@ -365,6 +378,7 @@ Method Hiding: All rules of method hiding are exactly same as overriding except 
 - Both parent and child class methods should be static. 
 - Compiler is responsible for method resolution based on reference(class) type. JVM is always responsible for method resolution based on runtime object.
 Ex:
+```
 class Parent{
 	public static void m(){  //overridden method
 		sop(“parent”);
@@ -384,7 +398,7 @@ p s v m(string [] args) {
 	Parent p1 = new Child();
 	p1.m(); //parent
 }
-
+```
 Overriding with varargs method: We can overwrite varargs method with another varargs method only. If we are trying to overriding a varargs method with normal method then it will be overloading as no of parameters are different.
 Overriding concept is only for method but not for variables(instance or static).
 
@@ -698,7 +712,9 @@ class VarargsExample{  
 ```
 
 Static Binding vs Dynamic Binding
+
 Decoupling
+
 Serialization
 Method overriding vs Method overloading
 Exceptions
