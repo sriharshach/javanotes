@@ -45,8 +45,6 @@ Fully checked vs Partially checked
 - A checked exception is said to be partially checked, if and only if some of it’s child classes are unchecked. Ex: Exception, Throwable. Only possible partially checked exception are Exception, Throwable
 - Within try/block if there is no chance of raising an exception, then we can’t write catch block for that exception. This rule is applicable for only fully checked exceptions
 
-## Customized exception handling by using try catch
-
 
 ## Control flow in try catch
 ```
@@ -133,6 +131,17 @@ Based on the person who is raising an exception, all exceptions are divided into
 JVM exceptions : The exceptions which are raised automatically by JVM whenever a particular event occurs are called JVM exceptions. Ex: ArithmeticExceptions, NPE, ArrayIndexOutOfBoundException, ClassCastException etc..
 Programmatic exceptions : The exceptions which are raised either by programmer or API developer to indicate that something is going wrong. Ex: NotBalanceFoundException, IllegalArgumentException, NumberFormatException, IllegalStateException, AssertionError etc..
 
+
+## Customized or user defined exceptions
+Ex:
+```
+class InvalidAgeException extends Exception{
+	InvalidAgeException(String s){
+		super(s);  
+	}
+}
+```
+
 ## 1.7 version enhancements like try with resources, multi-catch block
 It is highly recommended to write finally block to close resources which are opened as the part of try block.
 ```
@@ -170,16 +179,6 @@ try(BufferReader br = new BufferReader( new FileReader(“input.txt”))){
 }
 catch(IOException e) {
 	//catch IO exception and handling code.
-}
-```
-
-## Customized or user defined exceptions
-Ex:
-```
-class InvalidAgeException extends Exception{
-	InvalidAgeException(String s){
-		super(s);  
-	}
 }
 ```
 
@@ -229,3 +228,4 @@ catch(ArithmeticException e) {
 	throw new NullPointerException();
 }
 ```
+## Customized exception handling by using try catch
