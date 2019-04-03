@@ -1,4 +1,5 @@
 [ Data Hiding ](#datahiding)
+
 [ Abstraction ](#abstraction)
 
 <a name="datahiding"></a>
