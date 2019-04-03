@@ -686,10 +686,6 @@ Interfaces are a powerful tool to use for decoupling. Classes can communicate th
 * There is no setter methods i.e. we have no option to change the value of the instance variable.
 
 
-**Helper Methods**
-
-
-
 **Heavyweight vs Lightweight in java**
 Heavyweight components like "AWT" components must be drawn using native GUI on a specific platform or EJB which depend on application servers
 Where lightweight components like "Swing" components are drawn by java and don't rely on native GUI or spring framework are drawn from JDK and it’s jars not from application servers
@@ -711,25 +707,31 @@ class VarargsExample{  
 }
 ```
 
-Static Binding vs Dynamic Binding
+**Static Binding vs Dynamic Binding**
 
-Decoupling
+**Decoupling**
 
-Serialization
-Method overriding vs Method overloading
-Exceptions
-Multithreading
-Collections
-Strings
-Memory management in Java
-Spring
-Servlets/JSP
-Annotations
-WebServices
+**Helper Methods**
+
+**Serialization**
+
+**Method overriding vs Method overloading**
+
+**Exceptions**
+
+**Multithreading**
+
+**Collections**
+
+**Strings**
+
+**Memory management in Java**
+
+**Annotations**
 
 
 
-Useful Links
+## Useful Links
 
 http://javarevisited.blogspot.in/2013/03/top-15-data-structures-algorithm-interview-questions-answers-java-programming.html
 http://javarevisited.blogspot.in/2011/09/spring-interview-questions-answers-j2ee.html
